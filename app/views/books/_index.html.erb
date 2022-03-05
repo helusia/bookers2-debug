@@ -1,0 +1,25 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% books.each do |book| %>
+      <tr>
+        <td><%= link_to book_path(book.user) do %>
+        <!--undefined method `get_profile_image' for #<User::ActiveRecord_Associations_CollectionProxy:0x0000000005759b30>のエラー
+        book.rb has_many：User になっていた　belongs_to User になおす
+        <＃% byebug %> 中断してbookやUserの中身をターミナルで見ることができる-->
+          <%= image_tag book.user.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
+        <td><%= book.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
